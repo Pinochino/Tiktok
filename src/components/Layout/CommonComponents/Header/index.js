@@ -8,10 +8,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faCircleQuestion,
     faCircleXmark,
+    faCloudUpload,
     faEarthAfrica,
     faEllipsisVertical,
     faKeyboard,
     faMagnifyingGlass,
+    faMessage,
     faSpinner,
 } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useState } from 'react';
@@ -19,12 +21,28 @@ import { Wrapper as PopperWrapper } from '../../../Proper/index';
 import AccountItem from '../../../../components/AccountItem';
 import Button from '../../../Button/index';
 import Menu from '../../../Proper/Menu';
+import { type } from '@testing-library/user-event/dist/type';
 
 const cx = classNames.bind(styles);
 const MENU_ITEM = [
     {
         icon: <FontAwesomeIcon icon={faEarthAfrica} />,
         title: 'English',
+        children: {
+            title: 'Language',
+            data: [
+                {
+                    type: 'language',
+                    code: 'en',
+                    title: 'English',
+                },
+                {
+                    type: 'language',
+                    code: 'jp',
+                    title: 'Japan',
+                },
+            ],
+        },
     },
 
     {
@@ -38,6 +56,8 @@ const MENU_ITEM = [
         title: 'Keyboard shortcuts',
     },
 ];
+
+const currentUser = true;
 function Header() {
     const [searchResult, setSearchResult] = useState([]);
     useEffect(() => {
@@ -46,13 +66,23 @@ function Header() {
         }, 0);
     }, []);
 
+    // Handle Logic
+    const handleMenuChange = (menuItem) => {
+        switch (menuItem.type) {
+            case 'language':
+                // Handle change language
+                break;
+            default:
+                break;
+        }
+    };
+
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
                 <div className={cx('logo')}>
                     <img src={images.logo} alt="Tiktok" />
                 </div>
-
                 <Tippy
                     interactive
                     visible={searchResult.length > 0}
@@ -82,13 +112,34 @@ function Header() {
                     </div>
                 </Tippy>
                 <div className={cx('actions')}>
-                    <Button text> Upload </Button>
-                    <Button primary> Log in </Button>
+                    {currentUser ? (
+                        <>
+                            <button className={cx('action-btn')}>
+                                <FontAwesomeIcon icon={faCloudUpload} />
+                            </button>
+                            <button className={cx('action-btn')}>
+                                <FontAwesomeIcon icon={faMessage} />
+                            </button>
+                        </>
+                    ) : (
+                        <>
+                            <Button text> Upload </Button>
+                            <Button primary> Log in </Button>
+                        </>
+                    )}
 
-                    <Menu items={MENU_ITEM}>
-                        <button className={cx('more-btn')}>
-                            <FontAwesomeIcon icon={faEllipsisVertical} />
-                        </button>
+                    <Menu items={MENU_ITEM} onChange={handleMenuChange}>
+                        {currentUser ? (
+                            <img
+                                className={cx('user-avatar')}
+                                src="https://avatars.githubusercontent.com/u/139600392?s=96&v=4"
+                                alt="username"
+                            />
+                        ) : (
+                            <button className={cx('more-btn')}>
+                                <FontAwesomeIcon icon={faEllipsisVertical} />
+                            </button>
+                        )}
                     </Menu>
                 </div>
             </div>
