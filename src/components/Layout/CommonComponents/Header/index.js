@@ -1,6 +1,6 @@
 import styles from './Header.module.scss';
-// import Tippy from '@tippyjs/react';
-import Tippy from '@tippyjs/react/headless';
+import Tippy from '@tippyjs/react';
+import HeadlessTippy from '@tippyjs/react/headless';
 import 'tippy.js/dist/tippy.css';
 import classNames from 'classnames/bind';
 import images from '../../../../assets/images/index';
@@ -9,19 +9,21 @@ import {
     faCircleQuestion,
     faCircleXmark,
     faCloudUpload,
+    faCoins,
     faEarthAfrica,
     faEllipsisVertical,
+    faGear,
     faKeyboard,
     faMagnifyingGlass,
-    faMessage,
+    faRightFromBracket,
     faSpinner,
+    faUser,
 } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useState } from 'react';
 import { Wrapper as PopperWrapper } from '../../../Proper/index';
 import AccountItem from '../../../../components/AccountItem';
 import Button from '../../../Button/index';
 import Menu from '../../../Proper/Menu';
-import { type } from '@testing-library/user-event/dist/type';
 
 const cx = classNames.bind(styles);
 const MENU_ITEM = [
@@ -44,22 +46,21 @@ const MENU_ITEM = [
             ],
         },
     },
-
     {
         icon: <FontAwesomeIcon icon={faCircleQuestion} />,
         title: 'Feedback and Help',
         to: '/feedback',
     },
-
     {
         icon: <FontAwesomeIcon icon={faKeyboard} />,
         title: 'Keyboard shortcuts',
     },
 ];
 
-const currentUser = true;
 function Header() {
     const [searchResult, setSearchResult] = useState([]);
+    const currentUser = true;
+
     useEffect(() => {
         setTimeout(() => {
             setSearchResult([]);
@@ -77,13 +78,37 @@ function Header() {
         }
     };
 
+    const userMenu = [
+        {
+            icon: <FontAwesomeIcon icon={faUser} />,
+            title: 'View profile',
+            to: '/@hoaa',
+        },
+        {
+            icon: <FontAwesomeIcon icon={faCoins} />,
+            title: 'Get coins',
+            to: '/coin',
+        }, {
+            icon: <FontAwesomeIcon icon={faGear} />,
+            title: 'Setting',
+            to: '/setting',
+        },
+        ...MENU_ITEM,
+        {
+            icon: <FontAwesomeIcon icon={faRightFromBracket} />,
+            title: 'Log out',
+            to: '/logout',
+            separate: true,
+        },
+    ];
+
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
                 <div className={cx('logo')}>
                     <img src={images.logo} alt="Tiktok" />
                 </div>
-                <Tippy
+                <HeadlessTippy
                     interactive
                     visible={searchResult.length > 0}
                     render={(attrs) => (
@@ -110,16 +135,15 @@ function Header() {
                             <FontAwesomeIcon icon={faMagnifyingGlass} />
                         </button>
                     </div>
-                </Tippy>
+                </HeadlessTippy>
                 <div className={cx('actions')}>
                     {currentUser ? (
                         <>
-                            <button className={cx('action-btn')}>
-                                <FontAwesomeIcon icon={faCloudUpload} />
-                            </button>
-                            <button className={cx('action-btn')}>
-                                <FontAwesomeIcon icon={faMessage} />
-                            </button>
+                            <Tippy delay={[0, 200]} content="Upload video" placement="bottom">
+                                <button className={cx('action-btn')}>
+                                    <FontAwesomeIcon icon={faCloudUpload} />
+                                </button>
+                            </Tippy>
                         </>
                     ) : (
                         <>
@@ -128,7 +152,7 @@ function Header() {
                         </>
                     )}
 
-                    <Menu items={MENU_ITEM} onChange={handleMenuChange}>
+                    <Menu items={currentUser ? userMenu : MENU_ITEM} onChange={handleMenuChange}>
                         {currentUser ? (
                             <img
                                 className={cx('user-avatar')}
