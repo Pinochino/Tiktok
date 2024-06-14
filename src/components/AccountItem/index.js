@@ -3,11 +3,12 @@ import styles from './AccountItem.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import Image from '../Image';
+import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 function AccountItem({data}) {
     return (
-        <div className={cx('Wrapper')}>
+        <Link to={`/@${data.nickname}`} className={cx('Wrapper')}>
             <Image
                 className={cx('avatar')}
                 src={data.avatar}
@@ -20,7 +21,7 @@ function AccountItem({data}) {
                 </h4>
                 <span className={cx('username')}>{data.nickname}</span>
             </div>
-        </div>
+        </Link>
     );
 }
 

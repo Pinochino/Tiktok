@@ -8,6 +8,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Wrapper as PopperWrapper } from '../../../Proper/index';
 import AccountItem from '../../../../components/AccountItem';
 import { SearchIcon } from '../../../Icons/icons';
+import { useDebounce } from '../../../../hooks';
 
 const cx = classNames.bind(styles);
 function Search() {
@@ -16,11 +17,13 @@ function Search() {
     const [showResult, setShowResult] = useState(true);
     const [loading, setLoading] = useState(false);
 
+    const debounced = useDebounce(searchValue, 500);
 
     const inputRef = useRef();
 
     useEffect(() => {
-        if (!searchValue.trim()) {
+        if (!debounced.trim()) {
+            setSearchResult([]);
             return;
         }
         fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(searchValue)}&type=less`)
@@ -32,12 +35,13 @@ function Search() {
             .catch(() => {
                 setLoading(false);
             })
-    }, [searchValue]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [debounced]);
 
     const handleClear = () => {
         setSearchValue('');
-        inputRef.current.focus();
         setSearchResult([]);
+        inputRef.current.focus();
     };
 
     const handleHideResult = () => {

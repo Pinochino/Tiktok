@@ -14,11 +14,9 @@ import Search from "../pages/Search";
 const publicRoutes = [
    { path: '/', component: Home},
    { path: '/following', component: Following},
-   { path: '/profile', component: Profile},
+   {path: '/@:nickname', component: Profile},
    { path: '/upload', component: Upload, layout: HeaderOnly},
    { path: '/search', component: Search, layout:null},
-
-
 ]
 
 // public  route để cho những trang  cần đăng nhập thì nó sẽ tự động chuyển hướng mình đến trang đăng nhập
