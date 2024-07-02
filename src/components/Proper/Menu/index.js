@@ -1,4 +1,4 @@
-import Tippy from '@tippyjs/react/headless';
+import Tippy from '@tippyjs/react';
 // import Tippy from "@tippyjs/react";
 
 import { Wrapper as PopperWrapper } from '../../Proper';
@@ -9,9 +9,10 @@ import MenuItem from './MenuItem';
 import Header from './Header';
 import { useState } from 'react';
 
+
 const cx = classNames.bind(styles);
-const defaultFn = () => {}
-function Menu({ children, items = [], onChange = defaultFn }) {
+const defaultFn = () => {};
+function Menu({ children, hideOnClick = false, items = [], onChange = defaultFn }) {
     const [history, setHistory] = useState([{ data: items }]);
     const current = history[history.length - 1];
 
@@ -37,6 +38,7 @@ function Menu({ children, items = [], onChange = defaultFn }) {
 
     return (
         <Tippy
+            hideOnClick={hideOnClick}
             offset={[12, 8]}
             delay={[0, 500]}
             interactive
@@ -52,11 +54,11 @@ function Menu({ children, items = [], onChange = defaultFn }) {
                                 }}
                             />
                         )}
-                        {renderItems()}
+                        <div className={cx('menu-body')}> {renderItems()}</div>
                     </PopperWrapper>
                 </div>
             )}
-            onHide={() => setHistory(prev => prev.slice(0, 1))}
+            onHide={() => setHistory((prev) => prev.slice(0, 1))}
         >
             {children}
         </Tippy>

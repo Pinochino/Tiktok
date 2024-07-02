@@ -7,4 +7,6 @@
     box-sizing: border-box;
     max-height: min(-156px + 100vh, 760px);
     min-height: 100px;
+    display: flex;
+    flex-direction: column;
 }
