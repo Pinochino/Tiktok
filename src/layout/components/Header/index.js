@@ -1,10 +1,6 @@
-import styles from './Header.module.scss';
 import classNames from 'classnames/bind';
-import images from '../../../assets/images';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Tippy from '@tippyjs/react';
-import 'tippy.js/dist/tippy.css';
-
+import images from '~/assets/images';
+import styles from './Header.module.scss';
 import {
     faCircleQuestion,
     faCoins,
@@ -15,15 +11,16 @@ import {
     faRightFromBracket,
     faUser,
 } from '@fortawesome/free-solid-svg-icons';
-import Button from '../../../components/Button/index';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 
-import Menu from '../../../components/Proper/Menu/index';
-import { InboxIcon, MessageIcon, UploadIcon } from '../../../components/Icons';
-import Image from '../../../assets/images';
+import { InboxIcon, MessageIcon, UploadIcon } from '~/components/Icons';
+import Tippy from '@tippyjs/react';
+import Image from '~/components/Image';
+import Button from '~/components/Button';
+import Menu from '~/components/Proper/Menu';
 import Search from '../Search';
-import routeConfig from '../../../config/routes';
-
+import config from '~/config';
 
 const cx = classNames.bind(styles);
 
@@ -54,16 +51,8 @@ const MENU_ITEM = [
                     type: 'language',
                     code: 'jp',
                     title: 'Japan',
-                },   {
-                    type: 'language',
-                    code: 'en',
-                    title: 'English',
                 },
                 {
-                    type: 'language',
-                    code: 'jp',
-                    title: 'Japan',
-                },   {
                     type: 'language',
                     code: 'en',
                     title: 'English',
@@ -82,7 +71,18 @@ const MENU_ITEM = [
                     type: 'language',
                     code: 'jp',
                     title: 'Japan',
-                },   {
+                },
+                {
+                    type: 'language',
+                    code: 'en',
+                    title: 'English',
+                },
+                {
+                    type: 'language',
+                    code: 'jp',
+                    title: 'Japan',
+                },
+                {
                     type: 'language',
                     code: 'en',
                     title: 'English',
@@ -149,7 +149,7 @@ function Header() {
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
                 <div className={cx('logo')}>
-                    <Link to={routeConfig.home} className={cx('logo-link')}>
+                    <Link to={config.routes.home} className={cx('logo-link')}>
                         <img src={images.logo} alt="Tiktok" />
                     </Link>
                 </div>
@@ -168,6 +168,7 @@ function Header() {
                                     <UploadIcon />
                                 </button>
                             </Tippy>
+                        
                             <button className={cx('action-btn', 'inbox-icon')}>
                                 <InboxIcon />
                                 <span>12</span>

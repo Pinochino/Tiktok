@@ -4,13 +4,15 @@ import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useRef, useState } from 'react';
-import { Wrapper as PopperWrapper } from '../../../components/Proper/index';
-import AccountItem from '../../../components/AccountItem/index';
-import { SearchIcon } from '../../../components/Icons';
-import { useDebounce } from '../../../hooks';
+import { useDebounce } from '~/hooks';
+import AccountItem from '~/components/AccountItem';
+import { SearchIcon } from '~/components/Icons';
+
+import { Wrapper as PopperWrapper } from '../../../components/Proper';
 import * as searchServices from '../../../services/searchServices';
 
 const cx = classNames.bind(styles);
+
 function Search() {
     const [searchValue, setSearchValue] = useState('');
     const [searchResult, setSearchResult] = useState([]);
@@ -31,7 +33,7 @@ function Search() {
             setLoading(true);
 
             const result = await searchServices.search(debounced);
-            setSearchResult(result);
+            setSearchResult(result || []);  // Ensure result is an array
 
             setLoading(false);
         };
@@ -48,14 +50,13 @@ function Search() {
         setShowResult(false);
     };
 
-
     const handleChange = (e) => {
         const searchValue = e.target.value;
         if (!searchValue.startsWith(' ') && searchValue.trim()) {
             setSearchValue(searchValue);
         }
     }
-    
+
     return (
        <div>
             <HeadlessTippy
