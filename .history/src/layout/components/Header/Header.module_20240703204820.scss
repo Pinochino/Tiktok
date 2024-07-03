@@ -1,0 +1,74 @@
+.wrapper {
+    --seach-border-radius: 92px;
+    --search-height: 46px;
+    --search-top-spacer: 9px;
+    --search-button-width: 52px;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    height: var(--default-layout-header-height);
+    box-shadow: 0px 1px 1px rgb(0 0 0 / 12%);
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background-color: var(--white);
+}
+
+.inner {
+    width: var(--default-layout-width);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(----default-layout-horizontal-spacer);
+}
+
+.logo-link{
+    display: flex;
+}
+
+.more-btn {
+    font-size: 2rem;
+    margin-left: 28px;
+    padding: 4px 8px;
+    background: transparent;
+    cursor: pointer;
+}
+
+// Actions
+.actions {
+    display: inline-block;
+
+}
+
+.action-btn {
+    font-size: 2.6rem;
+    background-color: transparent;
+    padding: 4px 12px;
+    cursor: pointer;
+}
+
+.user-avatar {
+    width: 3.2rem;
+    height: 3.2rem;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-left: 32px;
+    cursor: pointer;
+}
+
+.inbox-icon {
+    position: relative;
+
+    span {
+        position: absolute;
+        background-color: red;
+        font-size: 1.2rem;
+        border-radius: 50%;
+        padding: 0.2rem;
+        right: 0.6rem;
+        top: 0.1rem;
+        color: #fff;
+    }
+}
