@@ -14,11 +14,11 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 
-import { InboxIcon, MessageIcon, UploadIcon } from '~/components/Icons';
+import { InboxIcon, MessageIcon, UploadIcon } from '~/assets/Icons';
 import Tippy from '@tippyjs/react';
-import Image from '~/components/Image';
+import Image from '~/assets/Image';
 import Button from '~/components/Button';
-import Menu from '~/components/Proper/Menu';
+import Menu from '~/components/Proper/Menu/Menu';
 import Search from '../Search';
 import config from '~/config';
 

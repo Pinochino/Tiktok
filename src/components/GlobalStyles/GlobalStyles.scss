@@ -38,7 +38,7 @@ input,
     outline: none;
 }
 
-a[href] {
+a {
     color: var(--text-color);
     text-decoration: none;
 }
@@ -108,4 +108,9 @@ body {
         top: -8px;
     }
 
+}
+
+.icon{
+    width: 2.4rem;
+    height: 2.4rem;
 }

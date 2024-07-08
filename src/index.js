@@ -1,7 +1,7 @@
 import React from 'react';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import GlobalStyles from './components/CSS/GlobalStyles';
+import GlobalStyles from './components/GlobalStyles';
 import { createRoot } from 'react-dom/client';
 import ErrorBoundary from './errors';
 

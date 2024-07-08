@@ -1,0 +1,30 @@
+.menu-item {
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    font-size: 1.8rem;
+    padding: 8px;
+    border-radius: 4px;
+    transition: background-color 200ms ease-in-out 0s;
+    color: var(--text-color);
+
+    &.active {
+        color: var( --primary-color);
+    }
+
+    &:hover{
+        background-color: rgba(22, 24, 35, 0.03);
+    }
+
+}
+.icon {
+    width: 3.2rem;
+    height: 3.2rem;
+}
+
+.title {
+    // color: rgb(254, 44, 85);
+    font-family: "IBM Plex Sans", TikTokFont, Arial, Tahoma, PingFangSC, sans-serif;
+    line-height: 24px;
+    margin-left: 10px;
+}
