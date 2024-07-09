@@ -8,8 +8,11 @@
     transition: background-color 200ms ease-in-out 0s;
     color: var(--text-color);
 
+
     &.active {
         color: var( --primary-color);
+
+       
     }
 
     &:hover{
@@ -23,8 +26,7 @@
 }
 
 .title {
-    // color: rgb(254, 44, 85);
     font-family: "IBM Plex Sans", TikTokFont, Arial, Tahoma, PingFangSC, sans-serif;
-    line-height: 24px;
+    line-height: 40px;
     margin-left: 10px;
 }

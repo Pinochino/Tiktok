@@ -7,20 +7,18 @@ const cx = classNames.bind(styles);
 
 function MenuItemSideBar({ title, to, icon }) {
     return (
-    <NavLink to={to} className={(nav) => cx('menu-item', {active: nav.isActive})}>
-            {icon}
-            <span className={cx('title')}>{title}</span>
-    </NavLink>
-)
+        <NavLink to={to} className={(nav) => cx('menu-item', { active: nav.isActive })}>
+                <span className='icon'>{icon}</span>
+                <span className={cx('title')}>{title}</span>
 
-    ;
+        </NavLink>
+    );
 }
 
 MenuItemSideBar.propTypes = {
     title: PropTypes.string.isRequired,
     to: PropTypes.string.isRequired,
     icon: PropTypes.node.isRequired,
-
-}
+};
 
 export default MenuItemSideBar;
