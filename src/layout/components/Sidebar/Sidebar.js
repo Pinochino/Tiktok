@@ -24,7 +24,7 @@ function Sidebar() {
             <MenuItemSideBar title="LIVE" to={config.routes.upload} icon={<RiLiveLine  className='icon'/>} activeIcon={<RiLiveFill  className='active-icon'/>}/>
         </MenuSideBar>
         <Accounts heading="Suggested Accounts"/>
-        <Accounts heading="Following Accounts"/>
+        {/* <Accounts heading="Following Accounts"/> */}
     </aside>
 }
 

@@ -1,12 +1,13 @@
 import PropTypes from 'prop-types';
 import Tippy from '@tippyjs/react';
-import { Wrapper as PopperWrapper } from '..';
+
 import 'tippy.js/dist/tippy.css';
 import classNames from 'classnames/bind';
 import styles from './Menu.module.scss';
 import MenuItem from './MenuItem';
 import Header from './HeaderMenu';
 import { useState } from 'react';
+import {Wrapper as PopperWrapper}  from '~/components/Proper';
 
 const cx = classNames.bind(styles);
 const defaultFn = () => {};
